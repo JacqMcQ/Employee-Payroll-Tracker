@@ -98,14 +98,22 @@ const trackEmployeeData = function() {
 
   getRandomEmployee(employees);
 
-  employees.sort(function(a,b) {
+  employees.sort(function(a, b) {
     if (a.lastName < b.lastName) {
       return -1;
-    } else {
+    } else if (a.lastName > b.lastName) {
       return 1;
+    } else {
+      // If last names are the same, sort by first name
+      if (a.firstName < b.firstName) {
+        return -1;
+      } else if (a.firstName > b.firstName) {
+        return 1;
+      } else {
+        return 0;
+      }
     }
   });
-
   displayEmployees(employees);
 }
 
